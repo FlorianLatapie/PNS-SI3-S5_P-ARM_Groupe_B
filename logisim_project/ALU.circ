@@ -1171,6 +1171,9 @@
     <comp lib="2" loc="(390,330)" name="Decoder">
       <a name="select" val="3"/>
     </comp>
+    <comp lib="4" loc="(530,260)" name="Shift Register">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
     <wire from="(230,460)" to="(230,520)"/>
     <wire from="(250,420)" to="(280,420)"/>
     <wire from="(380,330)" to="(380,380)"/>
