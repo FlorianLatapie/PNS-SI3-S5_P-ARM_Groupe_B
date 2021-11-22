@@ -1,0 +1,34 @@
+# Table de vérité
+# Générée à partir du circuit decodeur_et_afficheur
+# Exportée dans Mon Nov 08 15:20:11 CET 2021
+
+# Conseils et remarques sur la mise en forme :
+# * Vous pouvez modifier ce fichier, puis le réimporter dans Logisim !
+# * Tout ce qui suit un '#' correspond à un commentaire et sera ignoré. 
+# * Lesl ignes vides et les lignes de séparation (par exemple : ~~~~~~) sont ignorées.
+# * Utilisez des noms de colonne simples (sans espaces, ni ponctuation, etc.)
+# * 'Nom[N..0]' indique une variable de N + 1 bits, alors que
+# 'Nom' tout seul indique une variable de 1 bit.
+# * Vous pouvez utiliser 'x' ou '-' pour indiquer "indifférent" pour les 
+# bits d'entrée et de sortie.
+# * Vous pouvez utiliser la notation binaire (par exemple, '10100011xxxx') ou 
+# ou hexadécimale (par exemple, 'C3x'). Logisim déterminera la notation utilisée.
+
+e3 e2 e1 e0 | a b c d e f g
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0  0  0  0  | 1 1 1 1 1 1 0
+0  0  0  1  | 0 1 1 0 0 0 0
+0  0  1  0  | 1 1 0 1 1 0 1
+0  0  1  1  | 1 1 1 1 0 0 1
+0  1  0  0  | 0 1 1 0 0 1 1
+0  1  0  1  | 1 0 1 1 0 1 1
+0  1  1  0  | 1 0 1 1 1 1 1
+0  1  1  1  | 1 1 1 0 0 0 0
+1  0  0  0  | 1 1 1 1 1 1 1
+1  0  0  1  | 1 1 1 1 0 1 1
+1  0  1  0  | 1 1 1 0 1 1 1
+1  0  1  1  | 0 0 1 1 1 1 1
+1  1  0  0  | 1 0 0 1 1 1 0
+1  1  0  1  | 0 1 1 1 1 0 1
+1  1  1  0  | 1 0 0 1 1 1 1
+1  1  1  1  | 1 0 0 0 1 1 1
