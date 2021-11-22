@@ -772,12 +772,12 @@
     </comp>
     <comp lib="0" loc="(280,1510)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="a"/>
+      <a name="label" val="b"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(280,1550)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="b"/>
+      <a name="label" val="a"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(280,1590)" name="Tunnel">
@@ -1282,7 +1282,7 @@
     <comp lib="1" loc="(1260,1790)" name="AND Gate"/>
     <comp lib="1" loc="(1270,1430)" name="NAND Gate"/>
     <comp lib="1" loc="(1270,1930)" name="NAND Gate"/>
-    <comp lib="1" loc="(320,2190)" name="NOT Gate">
+    <comp lib="1" loc="(320,2150)" name="NOT Gate">
       <a name="width" val="32"/>
     </comp>
     <comp lib="1" loc="(340,1480)" name="NOT Gate"/>
@@ -1551,8 +1551,8 @@
     <wire from="(280,2030)" to="(340,2030)"/>
     <wire from="(280,2070)" to="(320,2070)"/>
     <wire from="(280,2110)" to="(320,2110)"/>
-    <wire from="(280,2150)" to="(330,2150)"/>
-    <wire from="(280,2190)" to="(290,2190)"/>
+    <wire from="(280,2150)" to="(290,2150)"/>
+    <wire from="(280,2190)" to="(330,2190)"/>
     <wire from="(280,2230)" to="(340,2230)"/>
     <wire from="(280,830)" to="(340,830)"/>
     <wire from="(280,870)" to="(340,870)"/>
@@ -1570,7 +1570,7 @@
     <wire from="(320,2080)" to="(340,2080)"/>
     <wire from="(320,2100)" to="(320,2110)"/>
     <wire from="(320,2100)" to="(340,2100)"/>
-    <wire from="(320,2190)" to="(330,2190)"/>
+    <wire from="(320,2150)" to="(330,2150)"/>
     <wire from="(330,1000)" to="(330,1010)"/>
     <wire from="(330,1010)" to="(350,1010)"/>
     <wire from="(330,1030)" to="(330,1040)"/>
