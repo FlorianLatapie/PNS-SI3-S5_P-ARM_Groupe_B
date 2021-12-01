@@ -16,7 +16,7 @@ public class Assembleur {
         System.out.println("Recherche de fichers '*.s' dans " + dossierDExec);
         File fichiersDuDossierDExec = new File(dossierDExec);
         List<String> tousLesFichiersS = Stream.of(Objects.requireNonNull(fichiersDuDossierDExec.list())).filter(file -> file.endsWith(".s")).toList();
-        System.out.println("fichiers a convertir : "+tousLesFichiersS);
+        System.out.println("fichiers a convertir : " + tousLesFichiersS);
 
         for (String nomDuFichier : tousLesFichiersS) {
             BufferedReader reader = null;
@@ -47,10 +47,12 @@ public class Assembleur {
     }
 
     private static void traiterLigne(BufferedWriter writer, String ligne) throws Exception {
-        String binaryString = convertirVersBinaire(ligne);
-        int decimal = Integer.parseInt(binaryString, 2);
-        binaryString = Integer.toString(decimal, 16);
-        afficherEtEcrire(writer, binaryString);
+        if (!ligne.startsWith("@")) {
+            String binaryString = convertirVersBinaire(ligne);
+            int decimal = Integer.parseInt(binaryString, 2);
+            binaryString = Integer.toString(decimal, 16);
+            afficherEtEcrire(writer, binaryString);
+        }
     }
 
     private static void afficherEtEcrire(BufferedWriter writer, String ligne) throws IOException {
