@@ -2330,7 +2330,7 @@ end TCL_Generic;
       <a name="label" val="ROM_In"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(320,330)" name="Tunnel">
+    <comp lib="0" loc="(330,360)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="Reset"/>
     </comp>
@@ -2584,8 +2584,8 @@ end TCL_Generic;
     <wire from="(1420,460)" to="(1420,470)"/>
     <wire from="(190,150)" to="(210,150)"/>
     <wire from="(190,240)" to="(210,240)"/>
-    <wire from="(320,330)" to="(320,410)"/>
-    <wire from="(320,410)" to="(400,410)"/>
+    <wire from="(330,360)" to="(330,410)"/>
+    <wire from="(330,410)" to="(400,410)"/>
     <wire from="(360,430)" to="(400,430)"/>
     <wire from="(370,330)" to="(370,390)"/>
     <wire from="(370,390)" to="(400,390)"/>
