@@ -11,6 +11,8 @@ import java.util.stream.Stream;
  * @author Florian Latapie
  */
 public class Assembleur {
+    static boolean outputHex = true;
+
     public static void main(String[] args) throws IOException {
         String dossierDExec = System.getProperty("user.dir") + "\\files\\";
         System.out.println("Recherche de fichers '*.s' dans " + dossierDExec);
@@ -55,9 +57,10 @@ public class Assembleur {
                             + binaryString.length() + "): " + ligne + " ==> "
                             + binaryString + "\n";
                 } else {
-                    System.out.println("\n binary string "+ binaryString);
+                    if (outputHex){
                     int decimal = Integer.parseInt(binaryString, 2);
                     binaryString = Integer.toString(decimal, 16);
+                    }
                 }
                 afficherEtEcrire(writer, binaryString+ " ");
             }
@@ -81,12 +84,17 @@ public class Assembleur {
             case "shift":
                 return Fonctions.sub(ligne);
             case "add":
-                return Fonctions.move(ligne);
-            case "sub":
-                return Fonctions.sub(ligne);
-            */
+                return Fonctions.move(ligne);*/
+            case "subs":
+                return Fonctions.subs(ligne);
             case "movs":
                 return Fonctions.movs(ligne);
+            case "eors":
+                return Fonctions.eors(ligne);
+            case "lsls":
+                return Fonctions.lsls(ligne);
+            case "lsrs":
+                return Fonctions.lsrs(ligne);
 
             default:
                 String message = "instruction a besoin d'etre implémenté  : " + ligne;
