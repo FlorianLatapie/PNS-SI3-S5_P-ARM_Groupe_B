@@ -48,10 +48,19 @@ public class Assembleur {
 
     private static void traiterLigne(BufferedWriter writer, String ligne) throws Exception {
         if (!ligne.startsWith("@")) {
-            String binaryString = convertirVersBinaire(ligne);
-            int decimal = Integer.parseInt(binaryString, 2);
-            binaryString = Integer.toString(decimal, 16);
-            afficherEtEcrire(writer, binaryString);
+            if (!ligne.isEmpty()) {
+                String binaryString = convertirVersBinaire(ligne);
+                if (binaryString.length() != 16) {
+                    binaryString = "instruction de mauvaise longueur ("
+                            + binaryString.length() + "): " + ligne + " ==> "
+                            + binaryString + "\n";
+                } else {
+                    System.out.println("\n binary string "+ binaryString);
+                    int decimal = Integer.parseInt(binaryString, 2);
+                    binaryString = Integer.toString(decimal, 16);
+                }
+                afficherEtEcrire(writer, binaryString+ " ");
+            }
         }
     }
 
@@ -68,10 +77,19 @@ public class Assembleur {
         switch (instruction) {
             case "ands":
                 return Fonctions.ands(ligne);
+            /*
+            case "shift":
+                return Fonctions.sub(ligne);
+            case "add":
+                return Fonctions.move(ligne);
             case "sub":
                 return Fonctions.sub(ligne);
+            */
+            case "movs":
+                return Fonctions.movs(ligne);
+
             default:
-                String message = "instruction needs to be implemented : " + ligne;
+                String message = "instruction a besoin d'etre implémenté  : " + ligne;
                 System.out.println(message);
                 return message;
         }
