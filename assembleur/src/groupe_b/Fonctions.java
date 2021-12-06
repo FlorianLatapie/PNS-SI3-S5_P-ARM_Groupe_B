@@ -88,42 +88,18 @@ public class Fonctions {
     }
 
     public static String ands(String ligne) throws Exception {
-        List<String> args = instructionVersListe(ligne);
-
-        String codop = "0000";
-        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))),3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))),3);
-
-        return s010000 + codop + Rm + Rdn;
+        return instructionCodopRdnRm(ligne, "0000");
     }
 
     public static String eors(String ligne) throws Exception{
-        List<String> args = instructionVersListe(ligne);
-
-        String codop = "0001";
-        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))),3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))),3);
-
-        return s010000 + codop + Rm + Rdn;
+        return instructionCodopRdnRm(ligne, "0001");
     }
 
     public static String lsls(String ligne) throws Exception{
-        List<String> args = instructionVersListe(ligne);
-
-        String codop = "0010";
-        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))),3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))),3);
-
-        return s010000 + codop + Rm + Rdn;
+        return instructionCodopRdnRm(ligne, "0010");
     }
 
     public static String lsrs(String ligne) throws Exception{
-        List<String> args = instructionVersListe(ligne);
-
-        String codop = "0011";
-        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))),3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))),3);
-
-        return s010000 + codop + Rm + Rdn;
+        return instructionCodopRdnRm(ligne, "0011");
     }
 }
