@@ -1,22 +1,27 @@
 movs r0, #0
-movs r1, #170
-movs r2, #255
+movs r1, #1
+movs r2, #1 
+rsbs r2, r2, #0
+movs r3, #1
+rsbs r3, r3, #0
+lsrs r3, r1
+movs r4, #1
 
-movs r3, #15
-ands r3, r1
-@r3 value should be 10, A
 
-movs r4, #161
-eors r4, r1
-@r4 value should be 11, B
 
-movs r5, #2
-movs r6, #15
-lsls r6, r5
-@r6 value should be 60, 3C
+cmn r3, r1
+@flag should be 1001
 
-movs r7, #1
-lsrs r6, r7
-@r6 value should be 30, 1E
+cmn r2, r1
+@flag should be 0110
+
+cmp r4, r1
+@flag should be 0110
+
+cmp r0, r1
+@flag should be 1000
+
+cmp r1, r0
+@flag should be 0010
 
 @Needs shift_add_sub_move to be implemented

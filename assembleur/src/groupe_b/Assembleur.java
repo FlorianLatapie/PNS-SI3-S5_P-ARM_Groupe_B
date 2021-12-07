@@ -95,9 +95,15 @@ public class Assembleur {
                 return Fonctions.lsls(ligne);
             case "lsrs":
                 return Fonctions.lsrs(ligne);
+            case "rsbs":
+                return Fonctions.rsbs(ligne);
+            case "cmn":
+                return Fonctions.cmn(ligne);
+            case "cmp":
+                return Fonctions.cmp(ligne);
 
             default:
-                String message = "instruction a besoin d'etre implémenté  : " + ligne;
+                String message = "\ninstruction a besoin d'etre implémenté  : " + ligne;
                 System.out.println(message);
                 return message;
         }

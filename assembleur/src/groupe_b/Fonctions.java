@@ -25,9 +25,7 @@ public class Fonctions {
 
     private static List<String> instructionVersListe(String instruction) throws Exception {
         List<String> arguments = new ArrayList<>(List.of(instruction.split(" ")));
-        if (arguments.size() != 3) {
-            throw new Exception("instruction ands incorrecte : " + instruction);
-        }
+
         for (int i = 0; i < arguments.size(); i++) {
             arguments.set(i, arguments.get(i).toLowerCase(Locale.ROOT).replace(",", "").replace("#", "").replace("r", ""));
         }
@@ -35,13 +33,11 @@ public class Fonctions {
     }
 
     public static String movs(String ligne) throws Exception {
-        String s001 = "001";
-        String s00 = "00";
         List<String> args = instructionVersListe(ligne);
         String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
         String imm8 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 8);
 
-        return s001 + s00 + Rd + imm8;
+        return "001" + "00" + Rd + imm8;
     }
 
 
@@ -55,7 +51,7 @@ public class Fonctions {
         }
     }
 
-    private static String subRegister(String ligne) throws Exception{
+    private static String subRegister(String ligne) throws Exception {
         List<String> args = instructionVersListe(ligne);
         String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
         String Rn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 3);
@@ -78,11 +74,11 @@ public class Fonctions {
         return "000" + "11" + "1" + "1" + imm3 + Rn + Rd;
     }
 
-    public static String instructionCodopRdnRm(String ligne, String codop) throws Exception{
+    public static String instructionCodopRdnRm(String ligne, String codop) throws Exception {
         List<String> args = instructionVersListe(ligne);
 
-        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))),3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))),3);
+        String Rdn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
+        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 3);
 
         return s010000 + codop + Rm + Rdn;
     }
@@ -91,15 +87,43 @@ public class Fonctions {
         return instructionCodopRdnRm(ligne, "0000");
     }
 
-    public static String eors(String ligne) throws Exception{
+    public static String eors(String ligne) throws Exception {
         return instructionCodopRdnRm(ligne, "0001");
     }
 
-    public static String lsls(String ligne) throws Exception{
+    public static String lsls(String ligne) throws Exception {
         return instructionCodopRdnRm(ligne, "0010");
     }
 
-    public static String lsrs(String ligne) throws Exception{
+    public static String lsrs(String ligne) throws Exception {
         return instructionCodopRdnRm(ligne, "0011");
     }
+
+    public static String rsbs(String ligne) throws Exception {
+        return instructionCodopRdnRm(ligne, "1001");
+    }
+
+    public static String cmn(String ligne) throws Exception {
+        return instructionCodopRdnRm(ligne, "1011");
+    }
+
+    public static String cmp(String ligne) throws Exception {
+        if (ligne.contains("#")) {
+            return cmpImmediate(ligne);
+        } else {
+            return cmpRegister(ligne);
+        }
+    }
+
+    public static String cmpRegister(String ligne) throws Exception {
+        return instructionCodopRdnRm(ligne, "1010");
+    }
+
+    public static String cmpImmediate(String ligne) throws Exception {
+        List<String> args = instructionVersListe(ligne);
+        String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
+        String imm8 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 8);
+        return 001 + 01 + Rd + imm8;
+    }
+
 }
