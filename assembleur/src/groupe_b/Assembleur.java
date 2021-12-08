@@ -57,12 +57,12 @@ public class Assembleur {
                             + binaryString.length() + "): " + ligne + " ==> "
                             + binaryString + "\n";
                 } else {
-                    if (outputHex){
-                    int decimal = Integer.parseInt(binaryString, 2);
-                    binaryString = Integer.toString(decimal, 16);
+                    if (outputHex) {
+                        int decimal = Integer.parseInt(binaryString, 2);
+                        binaryString = Integer.toString(decimal, 16);
                     }
                 }
-                afficherEtEcrire(writer, binaryString+ " ");
+                afficherEtEcrire(writer, Fonctions.padLeftZeros(binaryString,4) + " ");
             }
         }
     }
@@ -78,32 +78,55 @@ public class Assembleur {
         String instruction = arguments.get(0).toLowerCase(Locale.ROOT);
 
         switch (instruction) {
-            case "ands":
-                return Fonctions.ands(ligne);
-            /*
-            case "shift":
-                return Fonctions.sub(ligne);
-            case "add":
-                return Fonctions.move(ligne);*/
-            case "subs":
-                return Fonctions.subs(ligne);
-            case "movs":
-                return Fonctions.movs(ligne);
-            case "eors":
-                return Fonctions.eors(ligne);
             case "lsls":
                 return Fonctions.lsls(ligne);
             case "lsrs":
                 return Fonctions.lsrs(ligne);
+            case "asrs":
+                return Fonctions.asrs(ligne);
+            case "adds":
+                return Fonctions.adds(ligne);
+            case "subs":
+                return Fonctions.subs(ligne);
+            case "cmp":
+                return Fonctions.cmp(ligne);
+            case "movs":
+                return Fonctions.movs(ligne);
+            case "ands":
+                return Fonctions.ands(ligne);
+            case "eors":
+                return Fonctions.eors(ligne);
+            case "adcs":
+                return Fonctions.adcRegister(ligne);
+            case "sbcs":
+                return Fonctions.sbcRegister(ligne);
+            case "rors":
+                return Fonctions.rorRegister(ligne);
+            case "tst":
+                return Fonctions.tstRegister(ligne);
             case "rsbs":
                 return Fonctions.rsbs(ligne);
             case "cmn":
                 return Fonctions.cmn(ligne);
-            case "cmp":
-                return Fonctions.cmp(ligne);
+            case "orrs":
+                return Fonctions.orrs(ligne);
+            case "muls":
+                return Fonctions.muls(ligne);
+            case "bics":
+                return Fonctions.bics(ligne);
+            case "mvns":
+                return Fonctions.mvns(ligne);
+            case "str":
+                return Fonctions.str(ligne);
+            case "ldr":
+                return Fonctions.ldr(ligne);
+            case "add":
+                return Fonctions.add(ligne);
+            case "sub":
+                return Fonctions.sub(ligne);
 
             default:
-                String message = "\ninstruction a besoin d'etre implémenté  : " + ligne;
+                String message = "\ninstruction a besoin d'etre implémenté  : '" + ligne + "'";
                 System.out.println(message);
                 return message;
         }
