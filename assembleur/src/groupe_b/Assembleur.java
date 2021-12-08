@@ -124,7 +124,6 @@ public class Assembleur {
                 return Fonctions.add(ligne);
             case "sub":
                 return Fonctions.sub(ligne);
-
             default:
                 String message = "\ninstruction a besoin d'etre implémenté  : '" + ligne + "'";
                 System.out.println(message);
