@@ -1,0 +1,38 @@
+1-4_instructions.s
+v2.0 raw
+2000 2101 22aa 23ff 0054 0855 1f46 1076 1877 
+
+
+11-12_instructions.s
+v2.0 raw
+2000 2101 2201 4252 2301 425b 40cb 2401 42cb 42ca 428c 4288 4281 
+
+
+13-16_instructions.s
+v2.0 raw
+2000 2101 22aa 23ff 240f 4314 252d 4355 2613 4396 43d7 
+
+
+5-10_instructions.s
+v2.0 raw
+2000 2101 22aa 23ff 240f 4264 1064 2505 414d 418d 418d 26aa 41ce 4232 
+
+
+5-8_instructions.s
+v2.0 raw
+2000 2101 22aa 23ff 1a9c 1d55 26b3 
+
+
+default example.s
+v2.0 raw
+b083 2000 9002 2101 9101 9902 9a01 1889 9100 b003 
+
+
+load_store.s
+v2.0 raw
+20aa 21ff b004 9001 9100 b081 9a01 
+
+
+sp.s
+v2.0 raw
+b004 b081 

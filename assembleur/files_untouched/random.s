@@ -1,3 +1,0 @@
-random
-point
-s

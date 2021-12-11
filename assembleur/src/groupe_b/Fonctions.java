@@ -3,12 +3,14 @@ package groupe_b;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Florian Latapie
  */
 public class Fonctions {
     static String s010000 = "010000";
+    static String erreur_instruction_ = "Erreur instruction ";
 
     // méthodes java
 
@@ -27,11 +29,17 @@ public class Fonctions {
 
     //
 
-    public static List<String> instructionVersListe(String instruction) throws Exception {
+    public static List<String> instructionVersListe(String instruction) {
         List<String> arguments = new ArrayList<>(List.of(instruction.split(" ")));
 
         for (int i = 0; i < arguments.size(); i++) {
-            arguments.set(i, arguments.get(i).toLowerCase(Locale.ROOT).replace(",", "").replace("#", "").replace("r", ""));
+            arguments.set(
+                    i,
+                    arguments.get(i)
+                            .toLowerCase(Locale.ROOT)
+                            .replace(",", "")
+                            .replace("#", "")
+                            .replace("r", ""));
         }
         return arguments;
     }
@@ -49,7 +57,7 @@ public class Fonctions {
 
     public static String instructionImm5RmRd(String ligne, String case2) throws Exception {
         if (case2.length() != 2) {
-            return "erreur instruction : " + ligne;
+            return erreur_instruction_ + ligne;
         }
         List<String> args = instructionVersListe(ligne);
         String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
@@ -69,13 +77,18 @@ public class Fonctions {
 
     public static String addSub(String ligne, String registerImmediate, String addSub) throws Exception {
         if (registerImmediate.length() != 1 || addSub.length() != 1) {
-            return "erreur instruction : " + ligne;
+            return erreur_instruction_ + ligne;
         }
         List<String> args = instructionVersListe(ligne);
-        String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
-        String Rn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 3);
-        String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(3))), 3);
-        return "000" + "11" + registerImmediate + addSub + Rm + Rn + Rd;
+
+        if (args.size() == 4) {
+            String Rd = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
+            String Rn = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2))), 3);
+            String Rm = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(3))), 3);
+            return "000" + "11" + registerImmediate + addSub + Rm + Rn + Rd;
+        } else {
+            return  erreur_instruction_ + "(nb d'args mauvais) : " + ligne;
+        }
     }
 
     // instructions avec meme entete
@@ -106,22 +119,30 @@ public class Fonctions {
 
     public static String adds(String ligne) throws Exception {
         if (ligne.contains("#")) {
-            return addImmediate3bits(ligne);
-        } else if (ligne.contains("[") && ligne.contains("]")) {
-            return addImmediate8bits(ligne);
+            List<String> args = instructionVersListe(ligne);
+            if (args.size() == 4) {
+                return addImmediate3bits(ligne);
+            } else if (args.size() == 3) {
+                return addImmediate8bits(ligne);
+            }
         } else {
             return addRegister(ligne);
         }
+        return erreur_instruction_ + ligne;
     }
 
     public static String subs(String ligne) throws Exception {
         if (ligne.contains("#")) {
-            return subImmediate3bits(ligne);
-        } else if (ligne.contains("[") && ligne.contains("]")) {
-            return subImmediate8bits(ligne);
+            List<String> args = instructionVersListe(ligne);
+            if (args.size() == 4) {
+                return subImmediate3bits(ligne);
+            } else if (args.size() == 3) {
+                return subImmediate8bits(ligne);
+            }
         } else {
             return subRegister(ligne);
         }
+        return erreur_instruction_ + ligne;
     }
 
     public static String cmp(String ligne) throws Exception {
@@ -130,6 +151,13 @@ public class Fonctions {
         } else {
             return cmpRegister(ligne);
         }
+    }
+
+    public static String add(String ligne) throws Exception {
+        if (instructionVersListe(ligne).size() == 4) {
+            return addImmediate4args(ligne);
+        }
+        return addImmediate(ligne);
     }
 
 
@@ -188,7 +216,12 @@ public class Fonctions {
     // MOVS <Rd>, #<imm8>
     // 001 00 Rd imm8
     public static String movs(String ligne) throws Exception {
-        return instructionRdImm8(ligne, "00");
+        if (ligne.contains("#")){
+            return instructionRdImm8(ligne, "00");
+        } else {
+            ligne += ", #0";
+            return instructionImm5RmRd(ligne, "00");
+        }
     }
 
     // 9.1.1.9 CMP (immediate) : Compare (p. 223)
@@ -335,8 +368,8 @@ public class Fonctions {
         List<String> args = instructionVersListe(ligne);
         String Rt = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
         String imm8ToParse;
-        if (args.size() == 4){
-            imm8ToParse = args.get(3).replace("]","");
+        if (args.size() == 4) {
+            imm8ToParse = args.get(3).replace("]", "");
         } else {
             imm8ToParse = "0";
         }
@@ -345,13 +378,19 @@ public class Fonctions {
     }
 
     // 9.1.3.2 LDR (immediate) : Load Register (p. 246)
-    // LDR <Rt >, [SP{,#<offset>}]
+    // LDR <Rt >, [SP{, #<offset>}]
     // 1001 1 Rt imm8
-    public static String ldr(String ligne) throws Exception {
+    public static String ldr(String ligne) {
         List<String> args = instructionVersListe(ligne);
         String Rt = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(1))), 3);
-        String imm8 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(3).replace("]","")) / 4), 8);
-        return "1001" + "1" + Rt + imm8;
+        if (args.size() == 4) {
+            String imm8 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(3).replace("]", "")) / 4), 8);
+            return "1001" + "1" + Rt + imm8;
+        } else if (args.size() == 3) {
+            String imm8 = padLeftZeros("", 8);
+            return "1001" + "1" + Rt + imm8;
+        }
+        else return erreur_instruction_ + ligne;
     }
 
     // 9.1.4 Miscellaneous 16-bit instructions
@@ -359,11 +398,18 @@ public class Fonctions {
     // 9.1.4.1 ADD (SP plus immediate) : Add Immediate to SP (p. 194)
     // ADD [SP,] SP, #<offset>
     // 1011 0000 0 imm7
-    public static String add(String ligne) throws Exception {
+    private static String addImmediate(String ligne) {
         List<String> args = instructionVersListe(ligne);
         String imm7 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(2)) / 4), 7);
         return "1011" + "0000" + "0" + imm7;
     }
+
+    private static String addImmediate4args(String ligne) throws Exception {
+        List<String> args = instructionVersListe(ligne);
+        String imm7 = padLeftZeros(Integer.toBinaryString(Integer.parseInt(args.get(3)) / 4), 7);
+        return "1011" + "0000" + "0" + imm7;
+    }
+
 
     // 9.1.4.2 SUB (SP minus immediate) : Subtract Immediate from SP (p. 402)
     // SUB [SP,] SP, #<offset>
@@ -379,14 +425,105 @@ public class Fonctions {
     // 9.1.5.1 B : Conditional Branch (p. 205)
     // B<c> <label>
     // 1101 cond imm8
-    public static String conditionalBranch(String ligne){
-        return "B conditionnal not yet implemented";
+    public static String conditionalBranch(String ligne, String cond, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        List<String> args = instructionVersListe(ligne);
+        if (args.size() != 2){
+            return erreur_instruction_ + numeroLigne + ":" + ligne;
+        }
+
+        String label = args.get(1).replace(":", "");
+        int ligneLabel = dicoeLabelLigne.get(label);
+
+        int nCible = ligneLabel;
+        int nSource = numeroLigne;
+
+        int calcul = nCible - nSource -3 ;
+        String imm8;
+        if (calcul < 0) {
+            imm8 = padLeftZeros(Integer.toBinaryString(calcul).substring(24), 8);
+        } else {
+            imm8 = padLeftZeros(Integer.toBinaryString(calcul), 8);
+        }
+        return "1101" + cond + imm8;
     }
 
     // 9.1.5.2 B : Unconditional Branch (p. 205)
     // B <label>
-    // 1110 imm11
-    public static String unconditionalBranch(String ligne){
-        return "B unconditionnal not yet implemented";
+    // 11100 imm11
+    public static String unconditionalBranch(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        List<String> args = instructionVersListe(ligne);
+        if (args.size() != 2){
+            return erreur_instruction_ + numeroLigne + ":" + ligne;
+        }
+
+        String label = args.get(1).replace(":", "");
+        int ligneLabel = dicoeLabelLigne.get(label);
+
+        int nCible = ligneLabel;
+        int nSource = numeroLigne;
+
+        int calcul = nCible - nSource -3 ;
+        String imm11;
+        if (calcul < 0) {
+            imm11 = padLeftZeros(Integer.toBinaryString(calcul).substring(21), 11);
+        } else {
+            imm11 = padLeftZeros(Integer.toBinaryString(calcul), 11);
+        }
+
+        return "11100" + imm11;
+    }
+
+    // labels
+
+    public static String beq(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0000", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bne(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0001", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bcs(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0010", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bhs(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0010", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bcc(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0011", dicoeLabelLigne, numeroLigne);
+    }
+    public static String blo(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0011", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bmi(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0100", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bpl(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0101", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bvs(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0110", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bvc(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "0111", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bhi(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1000", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bls(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1001", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bge(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1010", dicoeLabelLigne, numeroLigne);
+    }
+    public static String blt(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1011", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bgt(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1100", dicoeLabelLigne, numeroLigne);
+    }
+    public static String ble(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1101", dicoeLabelLigne, numeroLigne);
+    }
+    public static String bal(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
+        return conditionalBranch(ligne, "1110", dicoeLabelLigne, numeroLigne);
     }
 }
