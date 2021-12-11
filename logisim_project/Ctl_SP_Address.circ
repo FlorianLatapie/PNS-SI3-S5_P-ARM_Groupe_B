@@ -9,11 +9,10 @@
       <a name="incoming" val="1"/>
     </tool>
     <tool name="Pin">
-      <a name="facing" val="north"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10unsigned"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Tunnel">
       <a name="facing" val="south"/>
@@ -210,11 +209,11 @@ end TCL_Generic;
     <a name="clabelup" val="east"/>
     <appear>
       <circ-anchor facing="east" height="6" width="6" x="337" y="57"/>
-      <circ-port height="10" pin="560,130" width="10" x="335" y="55"/>
-      <circ-port height="10" pin="560,260" width="10" x="335" y="75"/>
+      <circ-port height="10" pin="600,120" width="10" x="335" y="55"/>
+      <circ-port height="10" pin="670,210" width="10" x="335" y="75"/>
+      <circ-port height="8" pin="170,360" width="8" x="46" y="76"/>
       <circ-port height="8" pin="230,120" width="8" x="46" y="96"/>
-      <circ-port height="8" pin="230,200" width="8" x="46" y="56"/>
-      <circ-port height="8" pin="230,250" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="230,220" width="8" x="46" y="56"/>
       <rect fill="none" height="80" stroke="#000000" stroke-width="2" width="270" x="60" y="50"/>
       <rect height="20" stroke="none" width="270" x="60" y="110"/>
       <rect height="3" stroke="none" width="10" x="330" y="59"/>
@@ -229,31 +228,180 @@ end TCL_Generic;
       <text dominant-baseline="central" fill="#404040" font-family="Dialog" font-size="12" text-anchor="start" x="65" y="84">Enable</text>
       <text dominant-baseline="central" fill="#ffffff" font-family="Dialog" font-size="14" font-weight="bold" text-anchor="middle" x="195" y="124">SP_Address</text>
     </appear>
+    <comp lib="0" loc="(170,360)" name="Pin">
+      <a name="label" val="Enable"/>
+    </comp>
+    <comp lib="0" loc="(190,360)" name="Tunnel">
+      <a name="label" val="Enable"/>
+    </comp>
     <comp lib="0" loc="(230,120)" name="Pin">
       <a name="label" val="Stack_Pointer"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(230,200)" name="Pin">
+    <comp lib="0" loc="(230,220)" name="Pin">
       <a name="label" val="Instruction"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(230,250)" name="Pin">
+    <comp lib="0" loc="(230,260)" name="Tunnel">
+      <a name="facing" val="east"/>
       <a name="label" val="Enable"/>
     </comp>
-    <comp lib="0" loc="(560,130)" name="Pin">
+    <comp lib="0" loc="(240,430)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="imm7"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(240,470)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="stack_pointer"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(240,530)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="imm7"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(240,570)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="stack_pointer"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(270,120)" name="Tunnel">
+      <a name="label" val="stack_pointer"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(280,260)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+    </comp>
+    <comp lib="0" loc="(300,430)" name="Bit Extender">
+      <a name="in_width" val="7"/>
+      <a name="out_width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(300,530)" name="Bit Extender">
+      <a name="in_width" val="7"/>
+      <a name="out_width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(360,240)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="bit1" val="0"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="none"/>
+      <a name="bit15" val="none"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="incoming" val="16"/>
+      <a name="spacing" val="3"/>
+    </comp>
+    <comp lib="0" loc="(400,250)" name="Tunnel">
+      <a name="label" val="imm7"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(400,280)" name="Tunnel">
+      <a name="label" val="add_or_sub"/>
+    </comp>
+    <comp lib="0" loc="(410,450)" name="Tunnel">
+      <a name="label" val="ADD"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(410,550)" name="Tunnel">
+      <a name="label" val="SUB"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(580,120)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="new_stack_pointer"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(600,120)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="New_Stack_Pointer"/>
       <a name="output" val="true"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(560,260)" name="Pin">
+    <comp lib="0" loc="(640,330)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ADD"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(640,360)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="SUB"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(650,210)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Enable"/>
+    </comp>
+    <comp lib="0" loc="(670,210)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="Write_Enable"/>
       <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(680,400)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="add_or_sub"/>
+    </comp>
+    <comp lib="0" loc="(720,350)" name="Tunnel">
+      <a name="label" val="new_stack_pointer"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="1" loc="(340,240)" name="AND Gate">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="2" loc="(700,350)" name="Multiplexer">
+      <a name="enable" val="false"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(390,450)" name="Adder">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(390,550)" name="Subtractor">
+      <a name="width" val="32"/>
     </comp>
     <comp lib="8" loc="(132,41)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="Pull output low on Enable = 0"/>
     </comp>
+    <wire from="(170,360)" to="(190,360)"/>
+    <wire from="(230,120)" to="(270,120)"/>
+    <wire from="(230,220)" to="(290,220)"/>
+    <wire from="(230,260)" to="(240,260)"/>
+    <wire from="(240,430)" to="(260,430)"/>
+    <wire from="(240,470)" to="(330,470)"/>
+    <wire from="(240,530)" to="(260,530)"/>
+    <wire from="(240,570)" to="(330,570)"/>
+    <wire from="(280,260)" to="(290,260)"/>
+    <wire from="(300,430)" to="(330,430)"/>
+    <wire from="(300,530)" to="(330,530)"/>
+    <wire from="(330,430)" to="(330,440)"/>
+    <wire from="(330,440)" to="(350,440)"/>
+    <wire from="(330,460)" to="(330,470)"/>
+    <wire from="(330,460)" to="(350,460)"/>
+    <wire from="(330,530)" to="(330,540)"/>
+    <wire from="(330,540)" to="(350,540)"/>
+    <wire from="(330,560)" to="(330,570)"/>
+    <wire from="(330,560)" to="(350,560)"/>
+    <wire from="(340,240)" to="(360,240)"/>
+    <wire from="(380,250)" to="(400,250)"/>
+    <wire from="(380,280)" to="(400,280)"/>
+    <wire from="(390,450)" to="(410,450)"/>
+    <wire from="(390,550)" to="(410,550)"/>
+    <wire from="(580,120)" to="(600,120)"/>
+    <wire from="(640,330)" to="(650,330)"/>
+    <wire from="(640,360)" to="(670,360)"/>
+    <wire from="(650,210)" to="(670,210)"/>
+    <wire from="(650,330)" to="(650,340)"/>
+    <wire from="(650,340)" to="(670,340)"/>
+    <wire from="(680,370)" to="(680,400)"/>
+    <wire from="(700,350)" to="(720,350)"/>
   </circuit>
 </project>
