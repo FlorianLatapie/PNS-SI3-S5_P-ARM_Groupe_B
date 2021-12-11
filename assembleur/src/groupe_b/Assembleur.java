@@ -8,10 +8,10 @@ import java.util.stream.Stream;
  * @author Florian Latapie
  */
 public class Assembleur {
-    static boolean displayLinesInOutput = false;
+    static boolean displayLinesInOutput = !true;
     static boolean outputHex = !displayLinesInOutput;
     static boolean supressionDesBinAvantExec = false;
-
+    static String caractereEspacement = " ";//"\n";
 
     public static void main(String[] args) throws IOException {
 
@@ -33,6 +33,8 @@ public class Assembleur {
         for (String nomDuFichier : tousLesFichiersS) {
             int compteLigne = 0;
             int compteLigneDico = 0;
+            int compteInstruction = 0;
+            int compteInstructionDico = 0;
             Map<String, Integer> dicoLabelLigne = new HashMap<>();
 
             BufferedReader reader = null;
@@ -47,14 +49,22 @@ public class Assembleur {
                 String ligne;
                 afficherEtEcrire(writer, "v2.0 raw" + System.lineSeparator());
                 while ((ligne = reader.readLine()) != null) {
-                    remplirDico(ligne, dicoLabelLigne, compteLigneDico);
+                    remplirDico(ligne, dicoLabelLigne, compteInstructionDico);
                     compteLigneDico++;
+                    if (estInstruction(ligne)){
+                        compteInstructionDico ++;
+                    }
                 }
 
                 reader = new BufferedReader(new FileReader(cheminDuFichierDEntree));
                 while ((ligne = reader.readLine()) != null) {
-                    traiterLigne(writer, ligne, dicoLabelLigne, compteLigne);
+
+                    traiterLigne(writer, ligne, dicoLabelLigne, compteLigne, compteInstruction);
                     compteLigne++;
+                    if (estInstruction(ligne)){
+                        compteInstruction ++;
+                    }
+
                 }
                 System.out.println("\n");
 
@@ -69,12 +79,15 @@ public class Assembleur {
         }
     }
 
+    private static boolean estInstruction(String ligne) throws Exception {
+        return estLigneValide(ligne);
+    }
+
     private static void remplirDico(String ligne, Map<String, Integer> dicoLabelLigne, int numeroLigne) {
         ligne = ligne.trim();
         ligne = ligne.replace("\t", " ");
         if (estLabel(ligne)) {
             dicoLabelLigne.put(ligne.substring(0, ligne.length() - 1).toLowerCase(Locale.ROOT), numeroLigne);
-
         }
     }
 
@@ -88,11 +101,11 @@ public class Assembleur {
         return false;
     }
 
-    private static void traiterLigne(BufferedWriter writer, String ligne, Map<String, Integer> dicoLabelLigne, int numeroLigne) throws Exception {
+    private static void traiterLigne(BufferedWriter writer, String ligne, Map<String, Integer> dicoLabelLigne, int numeroLigne, int compteInstruction) throws Exception {
         ligne = ligne.trim();
         ligne = ligne.replace("\t", " ");
         if (estLigneValide(ligne)) {
-            String binaryString = convertirVersBinaire(ligne, dicoLabelLigne, numeroLigne);
+            String binaryString = convertirVersBinaire(ligne, dicoLabelLigne, numeroLigne, compteInstruction);
             if (binaryString.length() != 16) {
                 binaryString = "instruction de mauvaise longueur ("
                         + binaryString.length() + "): " + ligne + " ==> "
@@ -105,9 +118,9 @@ public class Assembleur {
             }
 
             if (displayLinesInOutput) {
-                afficherEtEcrire(writer, " l" + numeroLigne + " : " + Fonctions.padLeftZeros(binaryString, 4) + " ");
+                afficherEtEcrire(writer, numeroLigne + 1 + " : " + Fonctions.padLeftZeros(binaryString, 4) + caractereEspacement);
             } else {
-                afficherEtEcrire(writer, Fonctions.padLeftZeros(binaryString, 4) + " ");
+                afficherEtEcrire(writer, Fonctions.padLeftZeros(binaryString, 4) + caractereEspacement);
             }
         }
     }
@@ -129,7 +142,7 @@ public class Assembleur {
         writer.write(ligne);
     }
 
-    private static String convertirVersBinaire(String ligne, Map<String, Integer> dicoLabelLigne, int numeroLigne) throws Exception {
+    private static String convertirVersBinaire(String ligne, Map<String, Integer> dicoLabelLigne, int numeroLigne, int numeroInstruction) throws Exception {
         ligne = ligne.replace("\t", " ");
         List<String> arguments = new ArrayList<>(List.of(ligne.split(" ")));
 
@@ -183,41 +196,41 @@ public class Assembleur {
             case "sub":
                 return Fonctions.sub(ligne);
             case "b":
-                return Fonctions.unconditionalBranch(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.unconditionalBranch(ligne, dicoLabelLigne, numeroInstruction);
             case "beq":
-                return Fonctions.beq(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.beq(ligne, dicoLabelLigne, numeroInstruction);
             case "bne":
-                return Fonctions.bne(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bne(ligne, dicoLabelLigne, numeroInstruction);
             case "bcs":
-                return Fonctions.bcs(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bcs(ligne, dicoLabelLigne, numeroInstruction);
             case "bhs":
-                return Fonctions.bhs(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bhs(ligne, dicoLabelLigne, numeroInstruction);
             case "bcc":
-                return Fonctions.bcc(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bcc(ligne, dicoLabelLigne, numeroInstruction);
             case "blo":
-                return Fonctions.blo(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.blo(ligne, dicoLabelLigne, numeroInstruction);
             case "bmi":
-                return Fonctions.bmi(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bmi(ligne, dicoLabelLigne, numeroInstruction);
             case "bpl":
-                return Fonctions.bpl(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bpl(ligne, dicoLabelLigne, numeroInstruction);
             case "bvs":
-                return Fonctions.bvs(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bvs(ligne, dicoLabelLigne, numeroInstruction);
             case "bvc":
-                return Fonctions.bvc(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bvc(ligne, dicoLabelLigne, numeroInstruction);
             case "bhi":
-                return Fonctions.bhi(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bhi(ligne, dicoLabelLigne, numeroInstruction);
             case "bls":
-                return Fonctions.bls(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bls(ligne, dicoLabelLigne, numeroInstruction);
             case "bge":
-                return Fonctions.bge(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bge(ligne, dicoLabelLigne, numeroInstruction);
             case "blt":
-                return Fonctions.blt(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.blt(ligne, dicoLabelLigne, numeroInstruction);
             case "bgt":
-                return Fonctions.bgt(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bgt(ligne, dicoLabelLigne, numeroInstruction);
             case "ble":
-                return Fonctions.ble(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.ble(ligne, dicoLabelLigne, numeroInstruction);
             case "bal":
-                return Fonctions.bal(ligne, dicoLabelLigne, numeroLigne);
+                return Fonctions.bal(ligne, dicoLabelLigne, numeroInstruction);
             default:
                 String message = "\ninstruction a besoin d'etre implémenté  : '" + ligne + "'";
                 System.out.println(message);
