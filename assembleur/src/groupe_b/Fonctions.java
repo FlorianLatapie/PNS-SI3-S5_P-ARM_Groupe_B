@@ -44,6 +44,19 @@ public class Fonctions {
         return arguments;
     }
 
+    public static List<String> labelVersListe(String instruction) {
+        List<String> arguments = new ArrayList<>(List.of(instruction.split(" ")));
+
+        for (int i = 0; i < arguments.size(); i++) {
+            arguments.set(
+                    i,
+                    arguments.get(i)
+                            .toLowerCase(Locale.ROOT)
+                            .replace(":", ""));
+        }
+        return arguments;
+    }
+
     // instructions avec décodage commun
 
     public static String instructionCodopRdnRm(String ligne, String codop) throws Exception {
@@ -426,12 +439,12 @@ public class Fonctions {
     // B<c> <label>
     // 1101 cond imm8
     public static String conditionalBranch(String ligne, String cond, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
-        List<String> args = instructionVersListe(ligne);
+        List<String> args = labelVersListe(ligne);
         if (args.size() != 2){
             return erreur_instruction_ + numeroLigne + ":" + ligne;
         }
 
-        String label = args.get(1).replace(":", "");
+        String label = args.get(1);
         int ligneLabel = dicoeLabelLigne.get(label);
 
         int nCible = ligneLabel;
@@ -451,12 +464,12 @@ public class Fonctions {
     // B <label>
     // 11100 imm11
     public static String unconditionalBranch(String ligne, Map<String, Integer> dicoeLabelLigne, int numeroLigne) {
-        List<String> args = instructionVersListe(ligne);
+        List<String> args = labelVersListe(ligne);
         if (args.size() != 2){
             return erreur_instruction_ + numeroLigne + ":" + ligne;
         }
 
-        String label = args.get(1).replace(":", "");
+        String label = args.get(1);
         int ligneLabel = dicoeLabelLigne.get(label);
 
         int nCible = ligneLabel;
