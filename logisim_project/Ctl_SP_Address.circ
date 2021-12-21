@@ -258,13 +258,13 @@ end TCL_Generic;
     </comp>
     <comp lib="0" loc="(240,530)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="imm7"/>
-      <a name="width" val="7"/>
-    </comp>
-    <comp lib="0" loc="(240,570)" name="Tunnel">
-      <a name="facing" val="east"/>
       <a name="label" val="stack_pointer"/>
       <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(240,580)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="imm7"/>
+      <a name="width" val="7"/>
     </comp>
     <comp lib="0" loc="(270,120)" name="Tunnel">
       <a name="label" val="stack_pointer"/>
@@ -277,7 +277,7 @@ end TCL_Generic;
       <a name="in_width" val="7"/>
       <a name="out_width" val="32"/>
     </comp>
-    <comp lib="0" loc="(300,530)" name="Bit Extender">
+    <comp lib="0" loc="(300,580)" name="Bit Extender">
       <a name="in_width" val="7"/>
       <a name="out_width" val="32"/>
     </comp>
@@ -377,18 +377,18 @@ end TCL_Generic;
     <wire from="(230,260)" to="(240,260)"/>
     <wire from="(240,430)" to="(260,430)"/>
     <wire from="(240,470)" to="(330,470)"/>
-    <wire from="(240,530)" to="(260,530)"/>
-    <wire from="(240,570)" to="(330,570)"/>
+    <wire from="(240,530)" to="(330,530)"/>
+    <wire from="(240,580)" to="(260,580)"/>
     <wire from="(280,260)" to="(290,260)"/>
     <wire from="(300,430)" to="(330,430)"/>
-    <wire from="(300,530)" to="(330,530)"/>
+    <wire from="(300,580)" to="(330,580)"/>
     <wire from="(330,430)" to="(330,440)"/>
     <wire from="(330,440)" to="(350,440)"/>
     <wire from="(330,460)" to="(330,470)"/>
     <wire from="(330,460)" to="(350,460)"/>
     <wire from="(330,530)" to="(330,540)"/>
     <wire from="(330,540)" to="(350,540)"/>
-    <wire from="(330,560)" to="(330,570)"/>
+    <wire from="(330,560)" to="(330,580)"/>
     <wire from="(330,560)" to="(350,560)"/>
     <wire from="(340,240)" to="(360,240)"/>
     <wire from="(380,250)" to="(400,250)"/>
