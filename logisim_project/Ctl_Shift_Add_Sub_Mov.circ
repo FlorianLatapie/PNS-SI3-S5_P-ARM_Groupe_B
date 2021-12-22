@@ -9,11 +9,10 @@
       <a name="incoming" val="1"/>
     </tool>
     <tool name="Pin">
-      <a name="facing" val="north"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10unsigned"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Tunnel">
       <a name="facing" val="south"/>
@@ -210,7 +209,7 @@ end TCL_Generic;
     <a name="clabelup" val="east"/>
     <appear>
       <circ-anchor facing="east" height="6" width="6" x="267" y="97"/>
-      <circ-port height="10" pin="1000,880" width="10" x="265" y="115"/>
+      <circ-port height="10" pin="1110,890" width="10" x="265" y="115"/>
       <circ-port height="10" pin="800,240" width="10" x="265" y="35"/>
       <circ-port height="10" pin="800,290" width="10" x="265" y="55"/>
       <circ-port height="10" pin="800,690" width="10" x="265" y="75"/>
@@ -247,17 +246,21 @@ end TCL_Generic;
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="197" y="202">Flags_Update_Mask</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="236" y="44">Carry</text>
     </appear>
-    <comp lib="0" loc="(1000,880)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="label" val="ALU_Opcode"/>
-      <a name="output" val="true"/>
-      <a name="width" val="4"/>
+    <comp lib="0" loc="(1000,950)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+      <a name="out_width" val="4"/>
     </comp>
     <comp lib="0" loc="(1030,1260)" name="Tunnel">
       <a name="label" val="Imm32_enable"/>
     </comp>
     <comp lib="0" loc="(1060,1050)" name="Tunnel">
       <a name="label" val="CARRY"/>
+    </comp>
+    <comp lib="0" loc="(1110,890)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="label" val="ALU_Opcode"/>
+      <a name="output" val="true"/>
+      <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(130,1220)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -581,6 +584,11 @@ end TCL_Generic;
       <a name="facing" val="north"/>
       <a name="label" val="Enable"/>
     </comp>
+    <comp lib="0" loc="(650,790)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="imm8"/>
+      <a name="width" val="8"/>
+    </comp>
     <comp lib="0" loc="(660,160)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="INST"/>
@@ -606,6 +614,10 @@ end TCL_Generic;
       <a name="bit9" val="none"/>
       <a name="fanout" val="1"/>
       <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(710,790)" name="Bit Extender">
+      <a name="out_width" val="32"/>
+      <a name="type" val="zero"/>
     </comp>
     <comp lib="0" loc="(720,870)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -723,11 +735,6 @@ end TCL_Generic;
       <a name="label" val="imm3"/>
       <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(770,790)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="imm8"/>
-      <a name="width" val="8"/>
-    </comp>
     <comp lib="0" loc="(780,240)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CARRY"/>
@@ -748,12 +755,14 @@ end TCL_Generic;
       <a name="output" val="true"/>
       <a name="width" val="5"/>
     </comp>
+    <comp lib="0" loc="(810,830)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="i_MOV"/>
+    </comp>
     <comp lib="0" loc="(830,750)" name="Bit Extender">
       <a name="in_width" val="3"/>
       <a name="out_width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(830,790)" name="Bit Extender">
-      <a name="out_width" val="32"/>
+      <a name="type" val="zero"/>
     </comp>
     <comp lib="0" loc="(850,380)" name="Pin">
       <a name="facing" val="west"/>
@@ -789,6 +798,10 @@ end TCL_Generic;
       <a name="output" val="true"/>
       <a name="width" val="32"/>
     </comp>
+    <comp lib="0" loc="(940,950)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Enable"/>
+    </comp>
     <comp lib="0" loc="(950,1080)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="i_SUB"/>
@@ -797,6 +810,10 @@ end TCL_Generic;
       <a name="inputs" val="5"/>
     </comp>
     <comp lib="1" loc="(1020,1050)" name="OR Gate"/>
+    <comp lib="1" loc="(1090,890)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="width" val="4"/>
+    </comp>
     <comp lib="1" loc="(220,1020)" name="OR Gate"/>
     <comp lib="1" loc="(220,630)" name="OR Gate">
       <a name="inputs" val="3"/>
@@ -847,6 +864,13 @@ end TCL_Generic;
       <a name="select" val="2"/>
       <a name="selloc" val="tr"/>
     </comp>
+    <comp lib="2" loc="(830,790)" name="Multiplexer">
+      <a name="enable" val="false"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(780,810)" name="Negator">
+      <a name="width" val="32"/>
+    </comp>
     <comp lib="8" loc="(1016,248)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="Enable carry for SUB since it is reversed in ALU"/>
@@ -865,8 +889,12 @@ end TCL_Generic;
     </comp>
     <comp loc="(910,170)" name="Flags_To_Update"/>
     <comp loc="(970,880)" name="opcode_ALU"/>
+    <wire from="(1000,950)" to="(1020,950)"/>
     <wire from="(1010,1260)" to="(1030,1260)"/>
     <wire from="(1020,1050)" to="(1060,1050)"/>
+    <wire from="(1020,900)" to="(1020,950)"/>
+    <wire from="(1020,900)" to="(1060,900)"/>
+    <wire from="(1090,890)" to="(1110,890)"/>
     <wire from="(130,1220)" to="(180,1220)"/>
     <wire from="(130,770)" to="(250,770)"/>
     <wire from="(130,970)" to="(250,970)"/>
@@ -944,7 +972,13 @@ end TCL_Generic;
     <wire from="(500,860)" to="(520,860)"/>
     <wire from="(500,890)" to="(520,890)"/>
     <wire from="(530,100)" to="(530,120)"/>
+    <wire from="(650,790)" to="(670,790)"/>
     <wire from="(660,160)" to="(670,160)"/>
+    <wire from="(710,790)" to="(720,790)"/>
+    <wire from="(720,780)" to="(720,790)"/>
+    <wire from="(720,780)" to="(800,780)"/>
+    <wire from="(720,790)" to="(720,810)"/>
+    <wire from="(720,810)" to="(740,810)"/>
     <wire from="(720,870)" to="(730,870)"/>
     <wire from="(740,1140)" to="(840,1140)"/>
     <wire from="(750,1170)" to="(760,1170)"/>
@@ -975,10 +1009,13 @@ end TCL_Generic;
     <wire from="(770,1270)" to="(960,1270)"/>
     <wire from="(770,690)" to="(800,690)"/>
     <wire from="(770,750)" to="(790,750)"/>
-    <wire from="(770,790)" to="(790,790)"/>
     <wire from="(780,1280)" to="(780,1320)"/>
     <wire from="(780,1280)" to="(960,1280)"/>
     <wire from="(780,240)" to="(800,240)"/>
+    <wire from="(780,810)" to="(790,810)"/>
+    <wire from="(790,800)" to="(790,810)"/>
+    <wire from="(790,800)" to="(800,800)"/>
+    <wire from="(810,810)" to="(810,830)"/>
     <wire from="(820,1180)" to="(840,1180)"/>
     <wire from="(830,380)" to="(850,380)"/>
     <wire from="(830,470)" to="(850,470)"/>
@@ -994,10 +1031,11 @@ end TCL_Generic;
     <wire from="(920,1160)" to="(920,1240)"/>
     <wire from="(920,1240)" to="(960,1240)"/>
     <wire from="(940,1030)" to="(970,1030)"/>
+    <wire from="(940,950)" to="(960,950)"/>
     <wire from="(950,1080)" to="(960,1080)"/>
     <wire from="(960,1070)" to="(960,1080)"/>
     <wire from="(960,1070)" to="(970,1070)"/>
-    <wire from="(970,880)" to="(1000,880)"/>
+    <wire from="(970,880)" to="(1060,880)"/>
   </circuit>
   <circuit name="Flags_To_Update">
     <a name="appearance" val="logisim_evolution"/>

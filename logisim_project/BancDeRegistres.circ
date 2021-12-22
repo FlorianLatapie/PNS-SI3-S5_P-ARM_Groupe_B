@@ -9,11 +9,10 @@
       <a name="incoming" val="1"/>
     </tool>
     <tool name="Pin">
-      <a name="facing" val="north"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Probe">
-      <a name="facing" val="north"/>
-      <a name="radix" val="10unsigned"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Tunnel">
       <a name="facing" val="south"/>
@@ -166,22 +165,22 @@
     <a name="clabelup" val="east"/>
     <appear>
       <circ-anchor facing="east" height="6" width="6" x="397" y="77"/>
-      <circ-port height="10" pin="490,260" width="10" x="135" y="155"/>
-      <circ-port height="10" pin="750,260" width="10" x="145" y="155"/>
-      <circ-port height="10" pin="810,1030" width="10" x="405" y="125"/>
-      <circ-port height="10" pin="810,1130" width="10" x="405" y="135"/>
-      <circ-port height="10" pin="810,1230" width="10" x="405" y="145"/>
-      <circ-port height="10" pin="810,530" width="10" x="405" y="75"/>
-      <circ-port height="10" pin="810,630" width="10" x="405" y="85"/>
-      <circ-port height="10" pin="810,730" width="10" x="405" y="95"/>
-      <circ-port height="10" pin="810,830" width="10" x="405" y="105"/>
-      <circ-port height="10" pin="810,930" width="10" x="405" y="115"/>
-      <circ-port height="8" pin="110,110" width="8" x="126" y="76"/>
-      <circ-port height="8" pin="110,150" width="8" x="126" y="86"/>
-      <circ-port height="8" pin="190,680" width="8" x="126" y="126"/>
-      <circ-port height="8" pin="270,500" width="8" x="126" y="116"/>
-      <circ-port height="8" pin="400,210" width="8" x="126" y="96"/>
-      <circ-port height="8" pin="680,210" width="8" x="126" y="106"/>
+      <circ-port height="10" pin="490,260" width="10" x="405" y="135"/>
+      <circ-port height="10" pin="750,260" width="10" x="405" y="115"/>
+      <circ-port height="10" pin="810,1030" width="10" x="295" y="65"/>
+      <circ-port height="10" pin="810,1130" width="10" x="315" y="65"/>
+      <circ-port height="10" pin="810,1230" width="10" x="335" y="65"/>
+      <circ-port height="10" pin="810,530" width="10" x="195" y="65"/>
+      <circ-port height="10" pin="810,630" width="10" x="215" y="65"/>
+      <circ-port height="10" pin="810,730" width="10" x="235" y="65"/>
+      <circ-port height="10" pin="810,830" width="10" x="255" y="65"/>
+      <circ-port height="10" pin="810,930" width="10" x="275" y="65"/>
+      <circ-port height="8" pin="110,110" width="8" x="176" y="156"/>
+      <circ-port height="8" pin="110,150" width="8" x="206" y="156"/>
+      <circ-port height="8" pin="190,680" width="8" x="126" y="106"/>
+      <circ-port height="8" pin="270,500" width="8" x="126" y="86"/>
+      <circ-port height="8" pin="400,210" width="8" x="276" y="156"/>
+      <circ-port height="8" pin="680,210" width="8" x="316" y="156"/>
       <path d="M184,159 Q180,149 177,159" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="89" stroke="#000000" stroke-width="2" width="279" x="130" y="71"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="159" y="95">DataIn</text>

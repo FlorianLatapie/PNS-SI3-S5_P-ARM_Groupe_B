@@ -298,6 +298,26 @@ end TCL_Generic;
       <a name="facing" val="east"/>
       <a name="label" val="b5"/>
     </comp>
+    <comp lib="0" loc="(310,800)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b1"/>
+    </comp>
+    <comp lib="0" loc="(310,830)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b2"/>
+    </comp>
+    <comp lib="0" loc="(310,860)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b3"/>
+    </comp>
+    <comp lib="0" loc="(310,890)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b4"/>
+    </comp>
+    <comp lib="0" loc="(310,920)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b5"/>
+    </comp>
     <comp lib="0" loc="(340,110)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="b4"/>
@@ -326,7 +346,7 @@ end TCL_Generic;
       <a name="label" val="SP_Address"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(490,700)" name="Pin">
+    <comp lib="0" loc="(500,780)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="Conditional"/>
       <a name="output" val="true"/>
@@ -350,6 +370,8 @@ end TCL_Generic;
     <comp lib="1" loc="(370,450)" name="NOT Gate"/>
     <comp lib="1" loc="(370,580)" name="NOT Gate"/>
     <comp lib="1" loc="(370,690)" name="NOT Gate"/>
+    <comp lib="1" loc="(370,800)" name="NOT Gate"/>
+    <comp lib="1" loc="(370,830)" name="NOT Gate"/>
     <comp lib="1" loc="(390,110)" name="NOT Gate"/>
     <comp lib="1" loc="(390,150)" name="NOT Gate"/>
     <comp lib="1" loc="(450,130)" name="AND Gate"/>
@@ -365,6 +387,12 @@ end TCL_Generic;
     <comp lib="1" loc="(450,700)" name="AND Gate">
       <a name="inputs" val="4"/>
     </comp>
+    <comp lib="1" loc="(450,860)" name="AND Gate">
+      <a name="inputs" val="5"/>
+    </comp>
+    <comp lib="1" loc="(500,780)" name="OR Gate">
+      <a name="size" val="30"/>
+    </comp>
     <comp lib="8" loc="(663,140)" name="Text">
       <a name="text" val="Shift, add, sub, mov"/>
     </comp>
@@ -374,7 +402,7 @@ end TCL_Generic;
     <comp lib="8" loc="(686,569)" name="Text">
       <a name="text" val="SP Address"/>
     </comp>
-    <comp lib="8" loc="(725,709)" name="Text">
+    <comp lib="8" loc="(735,789)" name="Text">
       <a name="text" val="Conditional branch"/>
     </comp>
     <comp lib="8" loc="(755,280)" name="Text">
@@ -411,6 +439,11 @@ end TCL_Generic;
     <wire from="(310,690)" to="(340,690)"/>
     <wire from="(310,720)" to="(370,720)"/>
     <wire from="(310,750)" to="(400,750)"/>
+    <wire from="(310,800)" to="(340,800)"/>
+    <wire from="(310,830)" to="(340,830)"/>
+    <wire from="(310,860)" to="(400,860)"/>
+    <wire from="(310,890)" to="(380,890)"/>
+    <wire from="(310,920)" to="(390,920)"/>
     <wire from="(340,110)" to="(360,110)"/>
     <wire from="(340,150)" to="(360,150)"/>
     <wire from="(340,340)" to="(340,350)"/>
@@ -427,14 +460,24 @@ end TCL_Generic;
     <wire from="(370,690)" to="(400,690)"/>
     <wire from="(370,710)" to="(370,720)"/>
     <wire from="(370,710)" to="(400,710)"/>
+    <wire from="(370,800)" to="(390,800)"/>
+    <wire from="(370,830)" to="(380,830)"/>
     <wire from="(380,280)" to="(380,290)"/>
     <wire from="(380,280)" to="(400,280)"/>
+    <wire from="(380,830)" to="(380,850)"/>
+    <wire from="(380,850)" to="(400,850)"/>
+    <wire from="(380,870)" to="(380,890)"/>
+    <wire from="(380,870)" to="(400,870)"/>
     <wire from="(390,110)" to="(400,110)"/>
     <wire from="(390,150)" to="(400,150)"/>
     <wire from="(390,230)" to="(390,250)"/>
     <wire from="(390,250)" to="(400,250)"/>
     <wire from="(390,290)" to="(390,320)"/>
     <wire from="(390,290)" to="(400,290)"/>
+    <wire from="(390,800)" to="(390,840)"/>
+    <wire from="(390,840)" to="(400,840)"/>
+    <wire from="(390,880)" to="(390,920)"/>
+    <wire from="(390,880)" to="(400,880)"/>
     <wire from="(400,200)" to="(400,240)"/>
     <wire from="(400,300)" to="(400,350)"/>
     <wire from="(400,390)" to="(400,410)"/>
@@ -447,7 +490,12 @@ end TCL_Generic;
     <wire from="(450,270)" to="(490,270)"/>
     <wire from="(450,430)" to="(490,430)"/>
     <wire from="(450,560)" to="(490,560)"/>
-    <wire from="(450,700)" to="(490,700)"/>
+    <wire from="(450,700)" to="(460,700)"/>
+    <wire from="(450,860)" to="(460,860)"/>
+    <wire from="(460,700)" to="(460,770)"/>
+    <wire from="(460,770)" to="(470,770)"/>
+    <wire from="(460,790)" to="(460,860)"/>
+    <wire from="(460,790)" to="(470,790)"/>
     <wire from="(80,80)" to="(80,100)"/>
   </circuit>
 </project>
