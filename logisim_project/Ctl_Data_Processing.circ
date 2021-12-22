@@ -238,6 +238,15 @@ end TCL_Generic;
       <a name="facing" val="east"/>
       <a name="label" val="Enable"/>
     </comp>
+    <comp lib="0" loc="(150,310)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ALU"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(150,380)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Enable"/>
+    </comp>
     <comp lib="0" loc="(200,190)" name="Bit Extender">
       <a name="in_width" val="1"/>
     </comp>
@@ -253,11 +262,6 @@ end TCL_Generic;
     <comp lib="0" loc="(240,740)" name="Tunnel">
       <a name="label" val="Rd"/>
       <a name="width" val="3"/>
-    </comp>
-    <comp lib="0" loc="(290,330)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="ALU"/>
-      <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(300,160)" name="Splitter">
       <a name="appear" val="right"/>
@@ -291,6 +295,10 @@ end TCL_Generic;
     <comp lib="0" loc="(320,230)" name="Tunnel">
       <a name="label" val="instruction2"/>
       <a name="width" val="3"/>
+    </comp>
+    <comp lib="0" loc="(330,380)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+      <a name="out_width" val="4"/>
     </comp>
     <comp lib="0" loc="(380,620)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -368,10 +376,6 @@ end TCL_Generic;
       <a name="output" val="true"/>
       <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(620,750)" name="Constant">
-      <a name="value" val="0x0"/>
-      <a name="width" val="3"/>
-    </comp>
     <comp lib="0" loc="(630,620)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="instruction1"/>
@@ -392,6 +396,9 @@ end TCL_Generic;
     </comp>
     <comp lib="1" loc="(280,150)" name="AND Gate">
       <a name="width" val="16"/>
+    </comp>
+    <comp lib="1" loc="(510,330)" name="AND Gate">
+      <a name="width" val="4"/>
     </comp>
     <comp lib="2" loc="(460,740)" name="Multiplexer">
       <a name="enable" val="false"/>
@@ -423,8 +430,10 @@ end TCL_Generic;
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="Note: instructions that does not save the result will still have the second operand as the destination register, the ALU will copy the second register to the destination register"/>
     </comp>
-    <comp loc="(510,330)" name="codop_to_flags_update_mask"/>
+    <comp loc="(420,310)" name="codop_to_flags_update_mask"/>
     <wire from="(140,190)" to="(160,190)"/>
+    <wire from="(150,310)" to="(200,310)"/>
+    <wire from="(150,380)" to="(290,380)"/>
     <wire from="(200,190)" to="(210,190)"/>
     <wire from="(210,130)" to="(230,130)"/>
     <wire from="(210,170)" to="(210,190)"/>
@@ -432,6 +441,7 @@ end TCL_Generic;
     <wire from="(210,740)" to="(240,740)"/>
     <wire from="(280,150)" to="(300,150)"/>
     <wire from="(300,150)" to="(300,160)"/>
+    <wire from="(330,380)" to="(430,380)"/>
     <wire from="(380,620)" to="(390,620)"/>
     <wire from="(380,70)" to="(380,90)"/>
     <wire from="(390,620)" to="(390,750)"/>
@@ -467,6 +477,9 @@ end TCL_Generic;
     <wire from="(410,800)" to="(410,810)"/>
     <wire from="(410,800)" to="(420,800)"/>
     <wire from="(410,810)" to="(420,810)"/>
+    <wire from="(420,310)" to="(460,310)"/>
+    <wire from="(430,350)" to="(430,380)"/>
+    <wire from="(430,350)" to="(460,350)"/>
     <wire from="(440,820)" to="(440,860)"/>
     <wire from="(460,740)" to="(490,740)"/>
     <wire from="(510,330)" to="(560,330)"/>
@@ -474,7 +487,6 @@ end TCL_Generic;
     <wire from="(540,150)" to="(560,150)"/>
     <wire from="(540,270)" to="(560,270)"/>
     <wire from="(540,90)" to="(560,90)"/>
-    <wire from="(620,750)" to="(670,750)"/>
     <wire from="(630,620)" to="(640,620)"/>
     <wire from="(640,620)" to="(640,790)"/>
     <wire from="(640,790)" to="(670,790)"/>
@@ -496,8 +508,10 @@ end TCL_Generic;
     <wire from="(660,720)" to="(670,720)"/>
     <wire from="(660,730)" to="(660,740)"/>
     <wire from="(660,730)" to="(670,730)"/>
-    <wire from="(660,740)" to="(660,760)"/>
+    <wire from="(660,740)" to="(660,750)"/>
     <wire from="(660,740)" to="(670,740)"/>
+    <wire from="(660,750)" to="(660,760)"/>
+    <wire from="(660,750)" to="(670,750)"/>
     <wire from="(660,760)" to="(660,770)"/>
     <wire from="(660,760)" to="(670,760)"/>
     <wire from="(660,770)" to="(660,780)"/>
