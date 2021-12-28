@@ -318,8 +318,30 @@ end TCL_Generic;
       <a name="facing" val="east"/>
       <a name="label" val="enable"/>
     </comp>
+    <comp lib="0" loc="(490,120)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="addr"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(490,160)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="enable"/>
+    </comp>
+    <comp lib="0" loc="(490,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Rt"/>
+      <a name="width" val="3"/>
+    </comp>
+    <comp lib="0" loc="(490,90)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="enable"/>
+    </comp>
     <comp lib="0" loc="(510,500)" name="Pin">
       <a name="label" val="Clk"/>
+    </comp>
+    <comp lib="0" loc="(550,160)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+      <a name="out_width" val="32"/>
     </comp>
     <comp lib="0" loc="(550,370)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -328,6 +350,10 @@ end TCL_Generic;
     <comp lib="0" loc="(550,520)" name="Pin">
       <a name="facing" val="north"/>
       <a name="label" val="Reset"/>
+    </comp>
+    <comp lib="0" loc="(550,90)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+      <a name="out_width" val="3"/>
     </comp>
     <comp lib="0" loc="(560,350)" name="Tunnel">
       <a name="facing" val="south"/>
@@ -340,16 +366,6 @@ end TCL_Generic;
     <comp lib="0" loc="(600,460)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10unsigned"/>
-    </comp>
-    <comp lib="0" loc="(620,70)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Rt"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="0" loc="(630,140)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="addr"/>
-      <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(640,140)" name="Pin">
       <a name="facing" val="west"/>
@@ -385,6 +401,14 @@ end TCL_Generic;
     </comp>
     <comp lib="1" loc="(520,460)" name="AND Gate">
       <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(610,140)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="1" loc="(610,70)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="width" val="3"/>
     </comp>
     <comp lib="1" loc="(630,370)" name="AND Gate">
       <a name="inputs" val="3"/>
@@ -432,11 +456,25 @@ end TCL_Generic;
     <wire from="(470,440)" to="(470,450)"/>
     <wire from="(470,450)" to="(490,450)"/>
     <wire from="(470,470)" to="(490,470)"/>
+    <wire from="(490,120)" to="(570,120)"/>
+    <wire from="(490,160)" to="(510,160)"/>
+    <wire from="(490,50)" to="(570,50)"/>
+    <wire from="(490,90)" to="(510,90)"/>
     <wire from="(510,500)" to="(520,500)"/>
+    <wire from="(550,160)" to="(570,160)"/>
     <wire from="(550,370)" to="(590,370)"/>
     <wire from="(550,510)" to="(550,520)"/>
+    <wire from="(550,90)" to="(570,90)"/>
     <wire from="(560,350)" to="(560,360)"/>
     <wire from="(560,360)" to="(600,360)"/>
+    <wire from="(570,120)" to="(570,130)"/>
+    <wire from="(570,130)" to="(580,130)"/>
+    <wire from="(570,150)" to="(570,160)"/>
+    <wire from="(570,150)" to="(580,150)"/>
+    <wire from="(570,50)" to="(570,60)"/>
+    <wire from="(570,60)" to="(580,60)"/>
+    <wire from="(570,80)" to="(570,90)"/>
+    <wire from="(570,80)" to="(580,80)"/>
     <wire from="(580,380)" to="(580,420)"/>
     <wire from="(580,380)" to="(600,380)"/>
     <wire from="(580,420)" to="(580,460)"/>
@@ -447,8 +485,8 @@ end TCL_Generic;
     <wire from="(590,510)" to="(600,510)"/>
     <wire from="(590,520)" to="(590,580)"/>
     <wire from="(590,520)" to="(600,520)"/>
-    <wire from="(620,70)" to="(640,70)"/>
-    <wire from="(630,140)" to="(640,140)"/>
+    <wire from="(610,140)" to="(640,140)"/>
+    <wire from="(610,70)" to="(640,70)"/>
     <wire from="(630,370)" to="(650,370)"/>
     <wire from="(630,510)" to="(650,510)"/>
   </circuit>
