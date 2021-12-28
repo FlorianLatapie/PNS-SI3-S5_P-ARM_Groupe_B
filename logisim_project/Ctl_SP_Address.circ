@@ -316,7 +316,15 @@ end TCL_Generic;
       <a name="label" val="SUB"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(580,120)" name="Tunnel">
+    <comp lib="0" loc="(480,150)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Enable"/>
+    </comp>
+    <comp lib="0" loc="(530,150)" name="Bit Extender">
+      <a name="in_width" val="1"/>
+      <a name="out_width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(550,110)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="new_stack_pointer"/>
       <a name="width" val="32"/>
@@ -357,6 +365,10 @@ end TCL_Generic;
     <comp lib="1" loc="(340,240)" name="AND Gate">
       <a name="width" val="16"/>
     </comp>
+    <comp lib="1" loc="(590,120)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="width" val="32"/>
+    </comp>
     <comp lib="2" loc="(700,350)" name="Multiplexer">
       <a name="enable" val="false"/>
       <a name="width" val="32"/>
@@ -395,7 +407,12 @@ end TCL_Generic;
     <wire from="(380,280)" to="(400,280)"/>
     <wire from="(390,450)" to="(410,450)"/>
     <wire from="(390,550)" to="(410,550)"/>
-    <wire from="(580,120)" to="(600,120)"/>
+    <wire from="(480,150)" to="(490,150)"/>
+    <wire from="(530,150)" to="(550,150)"/>
+    <wire from="(550,110)" to="(560,110)"/>
+    <wire from="(550,130)" to="(550,150)"/>
+    <wire from="(550,130)" to="(560,130)"/>
+    <wire from="(590,120)" to="(600,120)"/>
     <wire from="(640,330)" to="(650,330)"/>
     <wire from="(640,360)" to="(670,360)"/>
     <wire from="(650,210)" to="(670,210)"/>
