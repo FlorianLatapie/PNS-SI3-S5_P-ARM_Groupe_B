@@ -9,11 +9,10 @@
       <a name="incoming" val="1"/>
     </tool>
     <tool name="Pin">
-      <a name="facing" val="north"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10unsigned"/>
+      <a name="appearance" val="NewPins"/>
     </tool>
     <tool name="Tunnel">
       <a name="facing" val="south"/>
@@ -595,14 +594,14 @@ end TCL_Generic;
     <wire from="(250,240)" to="(300,240)"/>
     <wire from="(260,1310)" to="(1120,1310)"/>
     <wire from="(260,570)" to="(260,770)"/>
-    <wire from="(260,570)" to="(710,570)"/>
+    <wire from="(260,570)" to="(690,570)"/>
     <wire from="(260,770)" to="(260,810)"/>
     <wire from="(260,770)" to="(340,770)"/>
     <wire from="(260,810)" to="(260,1310)"/>
     <wire from="(260,810)" to="(570,810)"/>
     <wire from="(280,1250)" to="(1120,1250)"/>
     <wire from="(280,590)" to="(280,840)"/>
-    <wire from="(280,590)" to="(710,590)"/>
+    <wire from="(280,590)" to="(680,590)"/>
     <wire from="(280,840)" to="(280,1250)"/>
     <wire from="(280,840)" to="(370,840)"/>
     <wire from="(310,60)" to="(1240,60)"/>
@@ -669,7 +668,13 @@ end TCL_Generic;
     <wire from="(650,510)" to="(650,520)"/>
     <wire from="(650,510)" to="(940,510)"/>
     <wire from="(650,520)" to="(670,520)"/>
+    <wire from="(680,590)" to="(680,600)"/>
+    <wire from="(680,600)" to="(700,600)"/>
+    <wire from="(690,570)" to="(690,590)"/>
+    <wire from="(690,590)" to="(710,590)"/>
     <wire from="(700,530)" to="(710,530)"/>
+    <wire from="(700,570)" to="(700,600)"/>
+    <wire from="(700,570)" to="(710,570)"/>
     <wire from="(900,1060)" to="(900,1070)"/>
     <wire from="(900,1070)" to="(960,1070)"/>
     <wire from="(900,1090)" to="(910,1090)"/>
