@@ -1,7 +1,12 @@
 #include <parm.h>
-void run ()
-{
+
+void run () {
 BEGIN ();
-// code ici
+
+    int a = 3, b = 2, resMult, resAdd;
+
+    resMult = a * b;
+    resAdd = a + b;
+
 END ();
 }
