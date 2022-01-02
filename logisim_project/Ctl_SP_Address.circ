@@ -276,10 +276,12 @@ end TCL_Generic;
     <comp lib="0" loc="(300,430)" name="Bit Extender">
       <a name="in_width" val="7"/>
       <a name="out_width" val="32"/>
+      <a name="type" val="zero"/>
     </comp>
     <comp lib="0" loc="(300,580)" name="Bit Extender">
       <a name="in_width" val="7"/>
       <a name="out_width" val="32"/>
+      <a name="type" val="zero"/>
     </comp>
     <comp lib="0" loc="(360,240)" name="Splitter">
       <a name="appear" val="right"/>
