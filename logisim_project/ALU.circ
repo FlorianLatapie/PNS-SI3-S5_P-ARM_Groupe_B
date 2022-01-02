@@ -1268,12 +1268,12 @@
     </comp>
     <comp lib="0" loc="(990,1590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="b"/>
+      <a name="label" val="a"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(990,1620)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="a"/>
+      <a name="label" val="b"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(990,1920)" name="Tunnel">
@@ -1306,8 +1306,8 @@
       <a name="label" val="a"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="1" loc="(1160,1540)" name="NOR Gate"/>
-    <comp lib="1" loc="(1160,1610)" name="NOR Gate"/>
+    <comp lib="1" loc="(1160,1540)" name="XOR Gate"/>
+    <comp lib="1" loc="(1160,1610)" name="XOR Gate"/>
     <comp lib="1" loc="(1160,2060)" name="NOR Gate"/>
     <comp lib="1" loc="(1160,2130)" name="NOR Gate"/>
     <comp lib="1" loc="(1170,1400)" name="XNOR Gate"/>
