@@ -1,7 +1,15 @@
 # 💻 Projet Polytech-ARM 
 # Équipe : Groupe B
 
+## Membres de l'équipe 
+* Florian Latapie
+* Loïc Le Bris 
+* Marius Lesaulnier
+* Thomas Paul
+
+
 ## Fichiers présentés durant la soutenance  
+* Les diapositives de présentation : à la racine du dossier sous le nom `P-ARM Groupe B.pdf` 
 * Tests d'intégration : https://bitbucket.org/edge-team-leat/parm_public/src/master/
 * Tests unitaires : dans le sous dossier `tests`
 * Programme d'exemple final : 
